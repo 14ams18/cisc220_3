@@ -1,6 +1,6 @@
 #!/bin/bash
 
-read -p "Enter the password: " pword #add -s
+read -p "Enter the password: " -s pword
 str=0
 if ((${#pword}>= 8)); then
 	str=$((str+1))
