@@ -19,21 +19,23 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
         courseStudent[${lineArray[0]}]=${lineArray[1]};
 done < ~/cisc220_3/student.txt
 
+cp student_course.txt output.txt
+
 while IFS='' read -r line || [[ -n "$line" ]]; do
         IFS=$'\t';
         read -r -a colArray <<< "$line";
         for i in "${!courseStudent[@]}"; do
                 if [[ "$i" == "${colArray[0]}" ]]; then
-                        sed -i s/${colArray[0]}/${courseStudent[$i]}"\t"/ student_course.txt
+                        sed -i s/${colArray[0]}/${courseStudent[$i]}"\t"/ output.txt
                 fi
         done
         for k  in "${!courseStudent[@]}"; do
                 if [[ "$k" == "${colArray[1]}" ]]; then
-                        sed -i s/"\t"${colArray[1]}/"\t"${courseStudent[$k]}/ student_course.txt
+                        sed -i s/"\t"${colArray[1]}/"\t"${courseStudent[$k]}/ output.txt
                 fi
         done
-done < ~/cisc220_3/student_course.txt
+done < ~/cisc220_3/output.txt
 
 echo "Output"
-head -n1 student_course.txt
-tail -n +2 student_course.txt | sort -k1,1 -Vk2,2
+head -n1 output.txt
+tail -n +2 output.txt | sort -k1,1 -Vk2,2
