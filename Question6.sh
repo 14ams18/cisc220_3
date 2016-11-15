@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#The files must be named course.txt, student.txt, and student_course.txt
+#The files need to be in the directory ~/cisc220_3/
+
 declare -A courseStudent
 declare -a lineArray
 declare -a colArray
